@@ -40,7 +40,7 @@ The model is pretrained to reconstruct masked expression bins, so it learns co-e
 structure without labels. The distinguishing choice versus prior masked cell models is a
 perturbation-conditioning token prepended at fine-tune time.
 
-## Implementation details
+## Implementation (paper)
 - Input representation: expression values binned into 51 tokens; genes ordered by input;
   [CLS] token prepended
 - Vocabulary: ~19k gene tokens plus special tokens

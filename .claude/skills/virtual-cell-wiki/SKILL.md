@@ -1,13 +1,33 @@
 ---
-name: model-wiki-page
+name: virtual-cell-wiki
 description: Extract one machine-learning model or method paper (especially single-cell and virtual-cell foundation models) into a single standardized wiki page. Use this whenever the user wants to add a paper or model to their model wiki, ingest a paper into the knowledge base, turn a method paper into a structured reference page, or "make a page for this model." Trigger even when the user just drops a PDF or arxiv link and says something like "add this to the wiki" or "write up this model." One page per paper. Do not invent cross-links between pages yet.
 ---
-
 # Model Wiki Page
 
 Turn one paper into one page. The page has three jobs: record what the paper *is* (identity), record what it *does* in reproducible detail (substance), and separate what the authors *claim* from what a reader concludes (assessment). The value of the wiki lives in that last separation. If the page blurs the authors' claims into fact, it becomes a transcription of the abstract and tells you nothing you could not get from the paper's own marketing.
 
 Fill from a single paper in a single pass. Do not pull in outside sources to "correct" the paper on this pass; record what this paper says and flag gaps.
+
+## Getting the paper
+
+If the user pastes a bioRxiv or arxiv link (or the paper is already in `sources/`), fetch the PDF and read it before writing the page.
+
+- Arxiv: WebFetch on `https://arxiv.org/pdf/<id>` usually works.
+- bioRxiv: blocks WebFetch (403). Use `curl` with a browser user-agent instead. Save to `sources/` so the workflow stays uniform:
+
+  ```
+  curl -sL -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36" \
+    -o "sources/<short-name>.pdf" \
+    "https://www.biorxiv.org/content/<doi>v<n>.full.pdf"
+  ```
+
+  The bioRxiv PDF URL is the abstract URL with `.full.pdf` appended.
+
+If neither WebFetch nor curl works, ask the user to download the PDF and drop it in `sources/`.
+
+Once the PDF is in `sources/`, extract text with the `Read` tool — pass it the absolute path and it returns the extracted content. No external PDF tools required.
+
+For very large PDFs (dozens of MB, or long books/reports where `Read` truncates or fails), fall back to `pdftotext` from poppler: `pdftotext "sources/<file>.pdf" -` prints the full text to stdout, pipeable to `head`, `grep`, or a file. Install once with `brew install poppler` (macOS) or `apt-get install poppler-utils` (Linux).
 
 ## Where pages are written
 
@@ -81,9 +101,9 @@ often the entire pitch, so record the numbers exactly and note what is `not stat
 The one idea that separates this model from its neighbors. Enough detail to tell it
 apart from the prior work it builds on. This is conceptual, not the hyperparameters.
 
-## Implementation details
-Reproducibility-grade specifics. Use `not stated` liberally here; the omissions are
-the point. Cover, where reported:
+## Implementation (paper)
+Reproducibility-grade specifics as reported in the paper. Use `not stated` liberally
+here; the omissions are the point. Cover, where reported:
 - Input representation / tokenization: how a cell becomes model input (rank-based
   ordering, value binning, HVG selection, continuous vs discrete, special tokens)
 - Vocabulary: gene vocab size, special tokens
@@ -98,6 +118,13 @@ the point. Cover, where reported:
 - Inference: how an embedding or prediction is produced at use time
 - Compute: hardware, GPU count, GPU-hours or wall-clock
 - Reproducibility: is training code released, are configs released
+
+## Implementation (code)
+Optional. Add only after reading the paper's linked reference implementation. Record
+concrete values that were `not stated` in the paper: hidden dim, layer counts, graph
+thresholds, loss weights, optimizer, learning rate, schedule, batch size, epochs.
+Note the source file(s). Keep this section separate from Implementation (paper) so the
+paper-vs-code delta stays visible; do not silently overwrite `not stated` above.
 
 ## Evaluation
 Benchmarks, metrics, and the baselines it was compared against. Record the baselines
@@ -132,8 +159,9 @@ Shows the intended grain, including honest use of `not stated`.
 Input: a masked-language-model cell foundation paper that reports architecture and objective but omits optimizer and compute.
 
 Output:
+
 ```markdown
-## Implementation details
+## Implementation (paper)
 - Input representation: expression values binned into 51 tokens; genes ordered by
   input; [CLS] token prepended
 - Vocabulary: ~60k gene tokens plus special tokens

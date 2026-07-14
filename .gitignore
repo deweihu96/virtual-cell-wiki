@@ -1,3 +1,11 @@
+# Cloned source repos used for code-diving into wiki entries; disposable
+code/
+graphify-out/
+
+# Papers users drop in locally; keep the folder in git but not its contents
+sources/*
+!sources/.gitkeep
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
