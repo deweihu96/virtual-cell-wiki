@@ -4,11 +4,11 @@ A self-maintaining wiki of ML models and method papers, focused on single-cell a
 
 ## Install
 
-Requires [Claude Code](https://docs.claude.com/en/docs/claude-code/overview).
+Requires [Claude Code](https://docs.claude.com/en/docs/claude-code/overview). For large PDF files, install tools like [poppler](https://formulae.brew.sh/formula/poppler) 
 
 ```bash
-git clone <this-repo-url> model-wiki
-cd model-wiki
+git clone https://github.com/deweihu96/virtual-cell-wiki
+cd virtual-cell-wiki
 claude            # start Claude Code in the repo root
 ```
 
