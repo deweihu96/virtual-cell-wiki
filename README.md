@@ -4,7 +4,7 @@ A self-maintaining wiki of ML models and method papers, focused on single-cell a
 
 ## Install
 
-Requires [Claude Code](https://docs.claude.com/en/docs/claude-code/overview). For large PDF files, install tools like [poppler](https://formulae.brew.sh/formula/poppler) 
+Requires [Claude Code](https://docs.claude.com/en/docs/claude-code/overview). For large PDF files, install tools like [poppler](https://formulae.brew.sh/formula/poppler)
 
 ```bash
 git clone https://github.com/deweihu96/virtual-cell-wiki
@@ -25,6 +25,19 @@ automatically. There is nothing else to install: the skill and the content direc
 - If the skill does not trigger on its own, invoke it directly with `/virtual-cell-wiki`.
 
 Run Claude Code from the repository root so `wiki/` and the skill are both in reach.
+
+### Example
+
+Drop the paper in `sources/` and ask Claude to add it. The skill reads the PDF, consults
+the schema in `EXAMPLE.md`, and (if a code repo is linked) clones it into `code/` to fill
+in the `Implementation (code)` section:
+
+![Starting a run: Claude picks up the PDF, reads the schema, clones the reference repo](figures/fig2.png)
+
+The result is a single Markdown page in `wiki/` with YAML frontmatter and the standard
+sections (paper vs. code implementation, evaluation, author claims, limitations):
+
+![Finished page: wiki/txpert.md with paper- and code-derived details separated](figures/fig1.png)
 
 ## Deepening a page from the reference code
 

@@ -120,11 +120,24 @@ here; the omissions are the point. Cover, where reported:
 - Reproducibility: is training code released, are configs released
 
 ## Implementation (code)
-Optional. Add only after reading the paper's linked reference implementation. Record
-concrete values that were `not stated` in the paper: hidden dim, layer counts, graph
-thresholds, loss weights, optimizer, learning rate, schedule, batch size, epochs.
-Note the source file(s). Keep this section separate from Implementation (paper) so the
-paper-vs-code delta stays visible; do not silently overwrite `not stated` above.
+**Add this section by default whenever the paper links a code repo.** The paper's
+`not stated` values almost always live in the code (hidden dim, layer counts, graph
+thresholds, loss weights, optimizer, learning rate, schedule, batch size, epochs);
+without them the wiki page is only half useful.
+
+Workflow, run without asking:
+1. `git clone --depth 1 <repo-url> code/<model>/` (`code/` is gitignored).
+2. `du -sh code/<model>/` and count Python LOC. If <10k LOC or <20MB, grep and Read
+   directly. If bigger, use the `graphify` skill and discard `graphify-out/` after.
+3. Grep for defaults: hidden size, layer counts, optimizer, lr, batch size, epochs,
+   any hyperparameter the paper flagged as `not stated`.
+4. Record concrete values in this section, noting the source file(s) (e.g.
+   `gears/model.py`, `gears/gears.py`). Keep this section separate from
+   Implementation (paper); do not silently overwrite `not stated` above. The
+   paper-vs-code delta is itself a finding.
+
+Skip only if the paper has no code link, the repo is private, or the paper is
+already a benchmarking / survey paper with no single reference implementation.
 
 ## Evaluation
 Benchmarks, metrics, and the baselines it was compared against. Record the baselines
