@@ -2,6 +2,25 @@
 
 A self-maintaining wiki of ML models and method papers, focused on single-cell and virtual-cell foundation models. One page per model. Ships with a seed set of processed pages, and lets you add your own papers with the bundled Claude Code skill.
 
+## Included pages
+
+| Model | Title | Core idea |
+|---|---|---|
+| [CellFlow](wiki/cellflow.md) | [CellFlow enables generative single-cell phenotype modeling with flow matching](https://doi.org/10.1101/2025.04.11.648220) | Conditional flow matching + optimal transport across cytokines, drugs, knockouts, morphogens |
+| [GEARS](wiki/gears.md) | [Predicting transcriptional outcomes of novel multigene perturbations with GEARS](https://doi.org/10.1038/s41587-023-01905-6) | GNN over gene coexpression + GO graph for unseen single/combo CRISPR perturbations |
+| [GenBio-FM-Perturbation](wiki/genbio-fm-perturbation.md) | [Foundation Models Improve Perturbation Response Prediction](https://www.biorxiv.org/content/10.64898/2026.02.18.706454v1) | Benchmark of >600 FM embeddings plus an attention-fusion model for perturbation prediction |
+| [MORPH](wiki/morph.md) | [MORPH Predicts the Single-Cell Outcome of Genetic Perturbations Across Conditions and Data Modalities](https://www.biorxiv.org/content/10.1101/2025.06.27.661992v1) | cVAE with cross-attention over learned gene programs, unpaired MMD training |
+| [scDiffusion](wiki/scdiffusion.md) | [scDiffusion: conditional generation of high-quality single-cell data using diffusion model](https://doi.org/10.1093/bioinformatics/btae518) | Latent DDPM in a foundation-model latent space with multi-classifier guidance for conditional scRNA generation |
+| [scDiffusion-X](wiki/scdiffusion-x.md) | [A multi-modal diffusion model with dual-cross-attention for multi-omics data generation and translation](https://doi.org/10.1038/s41467-026-71744-x) | Multi-omics latent diffusion with Dual-Cross-Attention between RNA and ATAC for generation, translation, and GRN inference |
+| [scFoundation](wiki/scfoundation.md) | [Large-scale foundation model on single-cell transcriptomics](https://doi.org/10.1038/s41592-024-02305-7) | 100M-param asymmetric encoder-decoder pretrained on 50M cells with read-depth-aware masked regression |
+| [scGPT](wiki/scgpt.md) | [scGPT: toward building a foundation model for single-cell multi-omics using generative AI](https://doi.org/10.1038/s41592-024-02201-0) | Transformer FM on 33M cells with generative gene-expression pretraining, fine-tuned per downstream task |
+| [scLAMBDA](wiki/sclambda.md) | [Modeling and predicting single-cell multi-gene perturbation responses with scLAMBDA](https://doi.org/10.1101/2024.12.04.626878) | VAE that disentangles basal state from a GenePT perturbation embedding, MI + FGSM regularization |
+| [scPerturBench](wiki/scperturbench.md) | [Benchmarking algorithms for generalizable single-cell perturbation response prediction](https://doi.org/10.1038/s41592-025-02980-0) | Benchmark of 27 perturbation-prediction methods across 29 datasets under unified splits and metrics |
+| [State](wiki/state.md) | [Predicting cellular responses to perturbation across diverse contexts with State](https://doi.org/10.1101/2025.06.26.661135) | Set-level transformer trained with MMD to map control-cell sets to perturbed-cell sets |
+| [TranscriptFormer](wiki/transcriptformer.md) | [TranscriptFormer: A generative cell atlas across 1.5 billion years of evolution](https://doi.org/10.1126/science.aec8514) | Autoregressive FM using ESM-2 protein embeddings as gene tokens; species-agnostic across 12 organisms |
+| [TxPert](wiki/txpert.md) | [TxPert: using multiple knowledge graphs for prediction of transcriptomic perturbation effects](https://doi.org/10.1038/s41587-026-03113-4) | Latent-shift decoder + attention GNN over multiple gene-gene knowledge graphs (STRING, GO, PxMap, TxMap) |
+| [X-Cell](wiki/x-cell.md) | [X-Cell: Scaling Causal Perturbation Prediction Across Diverse Cellular Contexts via Diffusion Language Models](https://doi.org/10.64898/2026.03.18.712807) | Set-level masked-diffusion transformer with multimodal priors via cross-attention, scaled to 4.9B parameters |
+
 ## Install
 
 Requires [Claude Code](https://docs.claude.com/en/docs/claude-code/overview). For large PDF files, install tools like [poppler](https://formulae.brew.sh/formula/poppler)
