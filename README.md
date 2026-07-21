@@ -4,7 +4,7 @@
 
 # Virtual cell wiki
 
-A self-maintaining wiki of ML models and method papers, focused on single-cell and virtual-cell foundation models. One page per model. Ships with a seed set of processed pages, and lets you add your own papers with the bundled Claude Code skill.
+A self-maintaining wiki of virtual cell model papers. One page per model. Ships with a seed set of processed pages, and lets you add your own papers with the bundled Claude Code skill.
 
 ## Included pages
 
