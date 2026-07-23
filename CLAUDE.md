@@ -10,6 +10,11 @@ Knowledge database for virtual cell models that can be easily read by AI models.
 - `sources/` holds raw papers you drop in to process (PDF or notes). Inputs only.
 - `code/` (gitignored) is scratch space for cloned reference implementations used to enrich pages.
 - `.claude/skills/virtual-cell-wiki/` is the extraction skill that turns a paper into a page.
+- `blogs/` holds non-peer-reviewed, hands-on writeups about virtual cell models and
+  related work (the Arc Virtual Cell Challenge is one common topic, not the only one).
+  One Markdown file per post, loose frontmatter, no fixed schema. Keep separate from
+  `wiki/`: blog claims are opinion/experience, not verified references. See
+  `blogs/README.md`.
 
 ## Processing a paper
 

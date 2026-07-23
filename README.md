@@ -71,6 +71,15 @@ section next to the existing `## Implementation (paper)` section so the paper-vs
 delta stays visible. For small repos this is a grep pass; for large repos, Claude uses
 the optional [graphify](https://github.com/Graphify-Labs/graphify) Claude Code skill (if installed) and discards the graph afterward.
 
+## Blogs
+
+`blogs/` holds hands-on, **non-peer-reviewed** writeups about virtual cell models and
+related work — competition logs, submission postmortems, tutorials, opinion. The Arc
+Virtual Cell Challenge is one common topic, not the only one. These are kept separate
+from `wiki/` on purpose: blog claims are experience and opinion, not verified references.
+One Markdown file per post, loose frontmatter, no fixed schema. See
+[blogs/README.md](blogs/README.md).
+
 ## Sharing pages back
 
 `wiki/` is versioned. Commit new pages and open a pull request to contribute them, or keep
@@ -98,6 +107,8 @@ model-wiki/
 │           └── references/
 │               └── EXAMPLE.md        # one filled page, used for format calibration
 ├── wiki/                             # the knowledge base: seed pages + your pages
+│   └── README.md
+├── blogs/                            # non-peer-reviewed hands-on writeups
 │   └── README.md
 ├── sources/                          # raw papers you drop in to process (optional)
 │   └── README.md
